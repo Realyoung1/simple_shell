@@ -1,21 +1,35 @@
 #include "shell.h"
+#include <stdbool.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
- * interactive - returns true if shell is interactive mode
- * @info: struct address
+ * interactive - this program returns true if shell is interactive mode.
+ * @info: struct address.
  *
- * Return: 1 if interactive mode, 0 otherwise
+ * Return: it is 1 if interactive mode, 0 absolutely.
  */
 int interactive(info_t *info)
 {
 	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
+
+
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * is_delim - this checks if character is a deli-meter.
+ * @c: this is for the char to check.
+ * @delim: this is the delimeter strings.
+ * Return: 1 for true, absolutely 0 if false.
  */
+
 int is_delim(char c, char *delim)
 {
 	while (*delim)
@@ -23,10 +37,12 @@ int is_delim(char c, char *delim)
 			return (1);
 	return (0);
 }
+
+
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ *_isalpha - this checks for alphabetic words.
+ *@c: The words to inputs.
+ *Return: it is 1 if c is alphabetic, absolutely 0 otherwise
  */
 int _isalpha(int c)
 {
@@ -35,10 +51,11 @@ int _isalpha(int c)
 	else
 		return (0);
 }
+
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - a function that convert a string to an integer
+ *@s: the string/pointer to be converted
+ *Return: 0 if no numbers in string, converted number otherwise, a integer.
  */
 int _atoi(char *s)
 {
