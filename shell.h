@@ -36,10 +36,10 @@
 extern char **environ;
 
 /**
- * struct liststr - singly linked list
- * @num: the number field
+ * struct liststr - singly linked list.
+ * @num: the number fields.
  * @str: a string
- * @next: points to the next node
+ * @next: points to the next nodes.
  */
 typedef struct liststr
 {
@@ -50,7 +50,7 @@ typedef struct liststr
 
 
 /**
- *struct passinfo - contains pseudo-arguements to pass into a function,
+ *struct passinfo - contains the pseudo-arguements to pass into a functions,
  *		allowing uniform prototypes for the function pointer struct.
  *@line_count: the error counts.
  *@err_num: the error code for exit()s.
@@ -98,9 +98,9 @@ typedef struct passinfo
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 /**
- *struct builtin - contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
+ *struct builtin - it contains a builtin strings and related functions.
+ *@type: this is the builtin command flags.
+ *@func: the functions.
  */
 typedef struct builtin
 {
