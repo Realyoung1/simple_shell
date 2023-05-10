@@ -1,11 +1,22 @@
 #include "shell.h"
+#include <stdbool.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
- * _myexit - exits the shell
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: exits with a given exit status
- *         (0) if info.argv[0] != "exit"
+ * _myexit - functions that exits the shells.
+ * @info: contains the pseudo-arguements to pass into a functions,
+ *	allowing uniform prototypes for the function pointer struct.
+ *  Return: exits with a given exit status.
+ *         absolutely (0) if info.argv[0] != "exit"
  */
 int _myexit(info_t *info)
 {
@@ -29,11 +40,12 @@ int _myexit(info_t *info)
 	return (-2);
 }
 /**
- * _mycd - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * _mycd - this function changes the current working directory of the process.
+ * @info: contains the pseudo-arguements to pass into a functions,
+ *	allowing uniform prototypes for the function pointer struct.
+ *  Return: Always return absolutely 0
  */
+
 int _mycd(info_t *info)
 {
 	char *s, *dir, buffer[1024];
@@ -77,12 +89,14 @@ int _mycd(info_t *info)
 	}
 	return (0);
 }
+
 /**
- * _myhelp - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
+ * _myhelp - this function changes the current working directory of the process.
+ * @info: contains the pseudo-arguements to pass into a functions,
+ *	allowing uniform prototypes for the function pointer struct.
+ *  Return: Always return absolutely 0
  */
+
 int _myhelp(info_t *info)
 {
 	char **arg_array;
