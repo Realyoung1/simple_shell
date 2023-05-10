@@ -14,7 +14,7 @@
 /**
  * _myexit - functions that exits the shells.
  * @info: contains the pseudo-arguements to pass into a functions,
- *	allowing uniform prototypes for the function pointer struct.
+ *allowing uniform prototypes for the function pointer struct.
  *  Return: exits with a given exit status.
  *         absolutely (0) if info.argv[0] != "exit"
  */
@@ -42,7 +42,7 @@ int _myexit(info_t *info)
 /**
  * _mycd - this function changes the current working directory of the process.
  * @info: contains the pseudo-arguements to pass into a functions,
- *	allowing uniform prototypes for the function pointer struct.
+ *allowing uniform prototypes for the function pointer struct.
  *  Return: Always return absolutely 0
  */
 
@@ -93,7 +93,7 @@ int _mycd(info_t *info)
 /**
  * _myhelp - this function change the current working directory of the process.
  * @info: contains the pseudo-arguements to pass into a functions,
- *	allowing uniform prototypes for the function pointer struct.
+ *allowing uniform prototypes for the function pointer struct.
  *  Return: Always return absolutely 0
  */
 
