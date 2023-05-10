@@ -91,7 +91,7 @@ int _mycd(info_t *info)
 }
 
 /**
- * _myhelp - this function changes the current working directory of the process.
+ * _myhelp - this function change the current working directory of the process.
  * @info: contains the pseudo-arguements to pass into a functions,
  *	allowing uniform prototypes for the function pointer struct.
  *  Return: Always return absolutely 0
