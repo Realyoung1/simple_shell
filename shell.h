@@ -51,7 +51,7 @@ typedef struct liststr
 
 /**
  *struct passinfo - contains the pseudo-arguements to pass into a functions,
- *		allowing uniform prototypes for the function pointer struct.
+ *allowing uniform prototypes for the function pointer struct.
  *@line_count: the error counts.
  *@err_num: the error code for exit()s.
  *@arg: a string generated from the getline containing the arguements.
