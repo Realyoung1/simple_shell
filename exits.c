@@ -1,64 +1,78 @@
 #include "shell.h"
+#include <stdbool.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
- **_strncpy - copies a string
- *@dest: the destination string to be copied to
- *@src: the source string
- *@n: the amount of characters to be copied
- *Return: the concatenated string
+ **_strncpy - this is a functtion that copy strings.
+ *@dest: this is the destination of the string to copy to.
+ *@src: this is the source string to copy from.
+ *@n: this is the amounts of characters to be copy.
+ *Return: it returns the concatenated strings
  */
+
 char *_strncpy(char *dest, char *src, int n)
 {
-	int i, j;
+	int v, b;
 	char *s = dest;
 
-	i = 0;
-	while (src[i] != '\0' && i < n - 1)
+	v = 0;
+	while (src[v] != '\0' && v < n - 1)
 	{
-		dest[i] = src[i];
-		i++;
+		dest[v] = src[v];
+		v++;
 	}
-	if (i < n)
+	if (v < n)
 	{
-		j = i;
-		while (j < n)
+		b = v;
+		while (b < n)
 		{
-			dest[j] = '\0';
-			j++;
+			dest[b] = '\0';
+			b++;
 		}
 	}
 	return (s);
 }
+
 /**
- **_strncat - concatenates two strings
- *@dest: the first string
- *@src: the second string
- *@n: the amount of bytes to be maximally used
- *Return: the concatenated string
+ **_strncat - this function concatenates two strings.
+ *@dest: this is the first string.
+ *@src: this is the second string.
+ *@n: this is the amount of bytes to be maximally use.
+ *Return: this returns the concatenated string.
  */
 char *_strncat(char *dest, char *src, int n)
 {
-	int i, j;
+	int v, b;
 	char *s = dest;
 
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < n)
+	v = 0;
+	b = 0;
+	while (dest[v] != '\0')
+		v++;
+	while (src[b] != '\0' && b < n)
 	{
-		dest[i] = src[j];
-		i++;
-		j++;
+		dest[v] = src[b];
+		v++;
+		b++;
 	}
-	if (j < n)
-		dest[i] = '\0';
+	if (b < n)
+		dest[v] = '\0';
 	return (s);
 }
+
 /**
- **_strchr - locates a character in a string
- *@s: the string to be parsed
- *@c: the character to look for
+ **_strchr - writes a functions that locates a character in a string.
+ *@s: this is the string to be parsed or locates.
+ *@c: this is the characters to locate.
  *Return: (s) a pointer to the memory area s
  */
 char *_strchr(char *s, char c)
