@@ -1,31 +1,41 @@
 #include "shell.h"
+#include <stdbool.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
+ * _strcpy - funtions thats copies a string.
+ * @dest: the destinations funtions.
+ * @src: the funtion source.
+ * Return: pointers to destination.
  */
 char *_strcpy(char *dest, char *src)
 {
-	int i = 0;
+	int v = 0;
 
 	if (dest == src || src == 0)
 		return (dest);
-	while (src[i])
+	while (src[v])
 	{
-		dest[i] = src[i];
-		i++;
+		dest[v] = src[v];
+		v++;
 	}
-	dest[i] = 0;
+	dest[v] = 0;
 	return (dest);
 }
+
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * _strdup - funtions duplicates a strings.
+ * @str: funtions the strings to duplicates.
+ * Return: pointers to the duplicated strings.
  */
 char *_strdup(const char *str)
 {
@@ -43,42 +53,42 @@ char *_strdup(const char *str)
 		ret[length] = *--str;
 	return (ret);
 }
+
 /**
- *_puts - prints an input string
- *@str: the string to be printed
- *
- * Return: Nothing
+ *_puts - funtion prints an input string.
+ *@str: the string to be printeds.
+ * Return: 0
  */
 void _puts(char *str)
 {
-	int i = 0;
+	int v = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[v] != '\0')
 	{
-		_putchar(str[i]);
-		i++;
+		_putchar(str[v]);
+		v++;
 	}
 }
+
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
+ * _putchar - funtions writes the character c to stdout.
+ * @c: The character to prints.
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
-	static int i;
+	static int v;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || v >= WRITE_BUF_SIZE)
 	{
-		write(1, buf, i);
-		i = 0;
+		write(1, buf, v);
+		v = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[v++] = c;
 	return (1);
 }
