@@ -1,4 +1,15 @@
 #include "shell.h"
+#include <stdbool.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>
+#include <stdio.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <stdlib.h>
 
 /**
  * main - entry point
@@ -9,7 +20,7 @@
  */
 int main(int av, char **ac)
 {
-	info_t info[] = { INFO.INIT };
+	info_t info[] = { INFO_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
