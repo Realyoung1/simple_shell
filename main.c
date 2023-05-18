@@ -12,14 +12,6 @@
 #include <stdlib.h>
 
 /**
- * free_data - frees data structure
- *
- * @datash: data structure
- * Return: no return
- */
-void free_data(data_shell *datash)
-{
-/**
  * main - implements a simple shell
  *
  * Return: EXIT_SUCCESS.
