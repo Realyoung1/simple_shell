@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdlib.h>
+#define INFO_INIT
 
 /**
  * main - compiles simple shell codes,
