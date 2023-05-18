@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-/**
+/s**
  * free_data - frees data structure
  *
  * @datash: data structure
@@ -19,66 +19,41 @@
  */
 void free_data(data_shell *datash)
 {
-	unsigned int i;
-
-	for (i = 0; datash->_environ[i]; i++)
-	{
-		free(datash->_environ[i]);
-	}
-
-	free(datash->_environ);
-	free(datash->pid);
-}
-
 /**
- * set_data - Initialize data structure
+ * main - implements a simple shell
  *
- * @datash: data structure
- * @av: argument vector
- * Return: no return
+ * Return: EXIT_SUCCESS.
  */
-void set_data(data_shell *datash, char **av)
+int main(void)
 {
-	unsigned int i;
+	char *input;
+	char **args;
+	int status;
 
-	datash->av = av;
-	datash->input = NULL;
-	datash->args = NULL;
-	datash->status = 0;
-	datash->counter = 1;
+	/* Register signal handlers */
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, handle_sigquit);
+	signal(SIGTSTP, handle_sigstp);
 
-	for (i = 0; environ[i]; i++)
-		;
+	do {
+		input = get_input();
+		if (!input || !*input)/* EOF detected, exit the loop */
+			break;
 
-	datash->_environ = malloc(sizeof(char *) * (i + 1));
+		args = tokenize_input(input);
+		if (!args || !*args)
+		{
+			free(input);
+			free_tokens(args);
+			continue;
+		}
+		status = execute(args);
+		free(input);
+		free_tokens(args);
 
-	for (i = 0; environ[i]; i++)
-	{
-		datash->_environ[i] = _strdup(environ[i]);
-	}
+		/* Set status to 1 to continue the loop */
+		status = 1;
+	} while (status);
 
-	datash->_environ[i] = NULL;
-	datash->pid = aux_itoa(getpid());
-}
-
-/**
- * main - Entry point
- *
- * @ac: argument count
- * @av: argument vector
- *
- * Return: 0 on success.
- */
-int main(int ac, char **av)
-{
-	data_shell datash;
-	(void) ac;
-
-	signal(SIGINT, get_sigint);
-	set_data(&datash, av);
-	shell_loop(&datash);
-	free_data(&datash);
-	if (datash.status < 0)
-		return (255);
-	return (datash.status);
+	return (EXIT_SUCCESS);
 }
