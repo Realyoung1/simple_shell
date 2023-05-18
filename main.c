@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 /**
- * main - entry point
+ * main - compiles simple shell codes,
  * @av: arg counts.
  * @ac: arg vectors.
  * Return: 0 on success, 1 on error
