@@ -10,7 +10,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdlib.h>
-#define INFO_INIT
+#define INFO_INIT \
 
 /**
  * main - compiles simple shell codes,
@@ -20,7 +20,7 @@
  */
 int main(int av, char **ac)
 {
-	info_t info[] = { INFO_INIT };
+	info_t info[] = { INFO_INIT \ };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
