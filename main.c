@@ -11,7 +11,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-/s**
+/**
  * free_data - frees data structure
  *
  * @datash: data structure
