@@ -12,43 +12,60 @@
 #include <stdlib.h>
 
 /**
- * main - compiles simple shell codes,
- * @av: arg counts.
- * @ac: arg vectors.
- * Return: 0 on success, 1 on error
- */
-int main(int av, char **ac)
+* main - Runs a simple UNIX command interpreter.
+* @argc: The number of arguments supplied to the program.
+* @argv: An array of pointers to the arguments.
+*
+* Return: The return value of the last executed command.
+*/
+int main(int argc, char *argv[])
 {
-	info_t info[] = { INFO_INIT };
-	int fd = 2;
+int ret = 0, retn;
+int *exe_ret = &retn;
+char *prompt = "$ ", *new_line = "\n";
 
-	asm ("mov %1, %0\n\t"
-		"add $3, %0"
-		: "=r" (fd)
-		: "r" (fd));
+name = argv[0];
+hist = 1;
+aliases = NULL;
+signal(SIGINT, sig_handler);
 
-	if (av == 2)
-	{
-		fd = open(ac[1], O_RDONLY);
-		if (fd == -1)
-		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				_eputs(ac[0]);
-				_eputs(": 0: Can't open ");
-				_eputs(ac[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
-				exit(127);
-			}
-			return (EXIT_FAILURE);
-		}
-		info->readfd = fd;
-	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, ac);
-	return (EXIT_SUCCESS);
+*exe_ret = 0;
+environ = _copyenv();
+if (!environ)
+exit(-100);
+
+if (argc != 1)
+{
+ret = proc_file_commands(argv[1], exe_ret);
+free_env();
+free_alias_list(aliases);
+return (*exe_ret);
+}
+
+if (!isatty(STDIN_FILENO))
+{
+while (ret != END_OF_FILE && ret != EXIT)
+ret = handle_args(exe_ret);
+free_env();
+free_alias_list(aliases);
+return (*exe_ret);
+}
+
+while (1)
+{
+write(STDOUT_FILENO, prompt, 2);
+ret = handle_args(exe_ret);
+if (ret == END_OF_FILE || ret == EXIT)
+{
+if (ret == END_OF_FILE)
+write(STDOUT_FILENO, new_line, 1);
+free_env();
+free_alias_list(aliases);
+exit(*exe_ret);
+}
+}
+
+free_env();
+free_alias_list(aliases);
+return (*exe_ret);
 }
