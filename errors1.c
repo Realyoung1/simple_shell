@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <stdbool.h>
 #include <sys/stat.h>
 #include <limits.h>
 #include <unistd.h>
