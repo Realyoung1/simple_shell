@@ -1,7 +1,6 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
 
-#include <stdbool.h>
 #include <sys/stat.h>
 #include <limits.h>
 #include <unistd.h>
